@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .colorWrapper {
+        width: 200px;
+      }
+
+      .colorContainer {
+        border: 1px solid black;
+        display: flex;
+      }
+
+      .colorBoxLeft,
+      .colorBoxRight {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .onlyForBorderLeft,
+      .onlyForBorderRight {
+        border-right: 1px solid black;
+        width: 5px;
+        height: 100%;
+      }
+
+      .onlyForBorderRight {
+        border-left: 1px solid black;
+      }
+
+      .colorBox {
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .colorBox.active {
+        background-color: black;
+        color: white;
+      }
+
+      .colorBox:not(.active) {
+        background-color: transparent;
+        color: black;
+      }
+    </style>
+    <script>
+      document.querySelectorAll('.colorBox').forEach((box) => {
+        box.addEventListener('click', () => {
+          // Remove the active class from all colorBoxes
+          document
+            .querySelectorAll('.colorBox')
+            .forEach((b) => b.classList.remove('active'));
+
+          // Add the active class to the clicked colorBox
+          box.classList.add('active');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="colorWrapper">
+      <span>Color</span>
+      <div class="colorContainer">
+        <div class="colorBox colorBoxLeft">
+          <div class="onlyForBorderLeft" style="background-color: blue"></div>
+          <span>Blue</span>
+        </div>
+        <div class="colorBox colorBoxRight">
+          <div class="onlyForBorderRight" style="background-color: red"></div>
+          <span>Red</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

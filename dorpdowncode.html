@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .dropdown {
+        width: 200px;
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: flex;
+        align-items: center;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+
+      .dropdown-label {
+        width: 80%;
+        padding: 8px;
+        border-right: 1px solid black;
+        box-sizing: border-box;
+      }
+
+      .dropdown-arrow {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dropdown-arrow::before {
+        content: '>';
+        font-size: 18px;
+        transform: rotate(90deg);
+      }
+
+      .dropdown-options {
+        display: none;
+        position: absolute;
+        width: 99%;
+        border: 1px solid black;
+        border-top: none;
+        background-color: white;
+        z-index: 1;
+      }
+
+      .option {
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      .option:hover {
+        background-color: #f0f0f0;
+      }
+
+      .dropdown.active .dropdown-options {
+        display: block;
+      }
+    </style>
+    <script>
+      document
+        .querySelector('.dropdown')
+        .addEventListener('click', function () {
+          this.classList.toggle('active');
+        });
+    </script>
+  </head>
+  <body>
+    <div class="dropdown">
+      <div class="dropdown-content">
+        <div class="dropdown-label">Select an option</div>
+        <div class="dropdown-arrow"></div>
+      </div>
+      <div class="dropdown-options">
+        <div class="option">Option 1</div>
+        <div class="option">Option 2</div>
+        <div class="option">Option 3</div>
+      </div>
+    </div>
+  </body>
+</html>
