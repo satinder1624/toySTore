@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Product Size Dropdown</title>
     <style>
       .dropdown {
         width: 200px;
@@ -60,25 +60,39 @@
         display: block;
       }
     </style>
+  </head>
+  <body>
+    <div class="dropdown">
+      <div class="dropdown-content">
+        <div class="dropdown-label">Select Size</div>
+        <div class="dropdown-arrow"></div>
+      </div>
+      <div class="dropdown-options">
+        {% assign available_sizes = "" %}
+        {% for variant in product.variants %}
+          {% unless available_sizes contains variant.option1 %}
+            {% assign available_sizes = available_sizes | append: variant.option1 | append: "," %}
+            <div class="option">{{ variant.option1 }}</div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+
     <script>
       document
         .querySelector('.dropdown')
         .addEventListener('click', function () {
           this.classList.toggle('active');
         });
+
+      // To handle selection (example)
+      const options = document.querySelectorAll('.option');
+      const label = document.querySelector('.dropdown-label');
+      options.forEach(option => {
+        option.addEventListener('click', function() {
+          label.textContent = this.textContent;
+        });
+      });
     </script>
-  </head>
-  <body>
-    <div class="dropdown">
-      <div class="dropdown-content">
-        <div class="dropdown-label">Select an option</div>
-        <div class="dropdown-arrow"></div>
-      </div>
-      <div class="dropdown-options">
-        <div class="option">Option 1</div>
-        <div class="option">Option 2</div>
-        <div class="option">Option 3</div>
-      </div>
-    </div>
   </body>
 </html>
